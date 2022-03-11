@@ -83,7 +83,7 @@ public class UserServlet extends HttpServlet {
 //        String roleName= request.getParameter("roleName");
 //        int roleID = request.getParameter("roleID");
         
-        Role role = new role();
+        Role role = new role(roleID,roleName);
 
         try {
             switch (action) {
@@ -102,7 +102,7 @@ public class UserServlet extends HttpServlet {
              Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
 //            request.setAttribute("message", "error");
         }
-//
+
         try {
             List<User> users = service.getAll();
             
@@ -111,7 +111,7 @@ public class UserServlet extends HttpServlet {
             Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
 //            request.setAttribute("message", "error");
         }
-//
+
         getServletContext().getRequestDispatcher("/WEB-INF/users.jsp").forward(request, response);
     }
 

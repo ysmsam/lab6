@@ -61,20 +61,12 @@
         <c:if test="${user ne null}">
             <h2>Edit User</h2>
             <form action="notes" method="post">
-                Title: <input type="text" name="title" value="${user.firstName}"><br>
-                Contents:<br>
-                <textarea name="contents" rows="10" cols="40">${user.contents}</textarea><br>
-                <input type="hidden" name="noteId" value="${user.noteId}">
+                <input type="text" name="title" value="${user.firstName}"><br>
+                <input name="firstName">${user.lastName}><br>
+                <input type="hidden" name="noteId" value="${user.role}">
                 <input type="hidden" name="action" value="update">
                 <input type="submit" value="Save">
             </form>
-
-            <form action="notes" method="post">
-                <input type="hidden" name="action" value="delete">
-                <input type="hidden" name="noteId" value="${user.noteId}">
-                <input type="submit" value="Delete">
-            </form>
-            <a href="notes">cancel edit</a>
         </c:if>
                     
             <%--<c:if test="${user ne null}">--%>
