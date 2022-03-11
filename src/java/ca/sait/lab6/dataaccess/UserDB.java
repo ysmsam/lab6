@@ -179,6 +179,7 @@ public class UserDB {
         
         boolean deleted;
         
+        // because the user role, the deletion does not effected for the role
         try {
             ps = con.prepareStatement(sql);
             ps.setString(1, user.getEmail());
