@@ -23,10 +23,10 @@ public class UserDB {
         //String sql = "SELECT * FROM user WHERE owner=?";  // since we dont have owner, we can take out WHERE clause!
         //String sql = "SELECT * FROM user";
         
-        String sql = "SELECT * FROM user INNER JOIN role ON role.role_id = user.role";  // here can include the ; from the SQL statement or not
-                                                                                        //ex.
-                                                                                        //String sql = 
-                                                                                        //"SELECT * FROM user INNER JOIN role ON role.role_id = user.role;";
+        String sql = "SELECT * FROM user INNER JOIN role ON role.role_id = user.role";   // here can include the ; from the SQL statement or not
+                                                                                                           //ex.
+                                                                                                            //String sql = 
+                                                                                                            //"SELECT * FROM user INNER JOIN role ON role.role_id = user.role;";
         
         try {
             
@@ -175,7 +175,8 @@ public class UserDB {
         ConnectionPool cp = ConnectionPool.getInstance();
         Connection con = cp.getConnection();
         PreparedStatement ps = null;
-        String sql = "DELETE FROM user WHERE email=?";  // WHERE email = (input)
+        //String sql = "DELETE FROM user WHERE email=?";  // WHERE email = (input)
+        String sql = "UPDATE user SET active = 0 WHERE email=?";   // instead of permenantly delete a user, we can make it as a soft delete
         
         boolean deleted;
         

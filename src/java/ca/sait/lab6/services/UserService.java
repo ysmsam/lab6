@@ -15,10 +15,15 @@ public class UserService {
         return user;
     }
     
-    public List<User> getAll(String email) throws Exception {
+    public List<User> getAll() throws Exception{
         List<User> users = this.userDB.getAll();
         return users;
     }
+    
+//    public List<User> getAll(String email) throws Exception {
+//        List<User> users = this.userDB.getAll();
+//        return users;
+//    }
     
     public boolean insert(String email, boolean active, String firstName, String lastName, String password, Role role) throws Exception {
         User user = new User(email, active, firstName, lastName, password, role);
@@ -35,4 +40,6 @@ public class UserService {
         user.setEmail(email);
         return this.userDB.delete(user);
     }
+
+
 }
