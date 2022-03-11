@@ -80,18 +80,19 @@ public class UserServlet extends HttpServlet {
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
         String password = request.getParameter("password");
-//        String roleName= request.getParameter("roleName");
-//        int roleID = request.getParameter("roleID");
         
-        Role role = new role(roleID,roleName);
+//        String roleName= request.getParameter("roleName");
+        int roleID = Integer.parseInt(request.getParameter("roleID"));
+        
+//        Role role = new role(roleID,roleName);
 
         try {
             switch (action) {
                 case "create":
-                    service.insert(email, active, firstName, lastName, password, role);
+                    service.insert(email, active, firstName, lastName, password, roleID);
                     break;
                 case "update":
-                    service.update(email, active, firstName, lastName, password, role);
+                    service.update(email, active, firstName, lastName, password, roleID);
                     break;
                 case "delete":
                     service.delete(email);

@@ -20,17 +20,12 @@ public class UserService {
         return users;
     }
     
-//    public List<User> getAll(String email) throws Exception {
-//        List<User> users = this.userDB.getAll();
-//        return users;
-//    }
-    
-    public boolean insert(String email, boolean active, String firstName, String lastName, String password, Role role) throws Exception {
+    public boolean insert(String email, boolean active, String firstName, String lastName, String password, int role) throws Exception {
         User user = new User(email, active, firstName, lastName, password, role);
         return this.userDB.insert(user);
     }
     
-    public boolean update(String email, boolean active, String firstName, String lastName, String password, Role role) throws Exception {
+    public boolean update(String email, boolean active, String firstName, String lastName, String password, int role) throws Exception {
         User user = new User(email, active, firstName, lastName, password, role);
         return this.userDB.update(user);
     }

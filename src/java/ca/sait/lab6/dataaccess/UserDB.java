@@ -59,7 +59,7 @@ public class UserDB {
                 String roleName = rs.getString(7);
 
                 Role role = new Role(roleID, roleName);
-                User user = new User(email, active, firstName, lastName, password, role);
+                User user = new User(email, active, firstName, lastName, password, roleID);
                 
                 users.add(user);
             }
@@ -108,7 +108,7 @@ public class UserDB {
                 String roleName = rs.getString(7);
 
                 Role role = new Role(roleID, roleName);
-                user = new User(email, active, firstName, lastName, password, role);
+                user = new User(email, active, firstName, lastName, password, roleID);
             }
         } finally {
             DBUtil.closeResultSet(rs);

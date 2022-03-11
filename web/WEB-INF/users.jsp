@@ -63,9 +63,10 @@
             <form action="notes" method="post">
                 <input type="text" name="title" value="${user.firstName}"><br>
                 <input name="firstName">${user.lastName}><br>
-                <input type="hidden" name="noteId" value="${user.role}">
-                <input type="hidden" name="action" value="update">
-                <input type="submit" value="Save">
+                <input type="text" name="role" value="${user.role}">
+                <input type="text" name="active" value="${user.active}">
+                <input type="buttom" name="action" value="update">
+                <!--<input type="submit" value="Save">-->
             </form>
         </c:if>
                     
