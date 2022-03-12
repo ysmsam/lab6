@@ -17,7 +17,7 @@ public class RoleDB {
         PreparedStatement ps = null;
         ResultSet rs = null;
         
-        String sql = "SELECT * FROM role INNER JOIN role ON role.role_id = role.role"; 
+        String sql = "SELECT * FROM role"; 
         
         try {
           

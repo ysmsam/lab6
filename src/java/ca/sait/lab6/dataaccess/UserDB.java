@@ -123,17 +123,25 @@ public class UserDB {
         ConnectionPool cp = ConnectionPool.getInstance();
         Connection con = cp.getConnection();
         PreparedStatement ps = null;
-        String sql = "INSERT INTO user ('email', 'first_name', 'last_name','password','role') VALUES (?, ?, ?, ?, ?)";
+        
+        int act = 0;
+        
+        String sql = "INSERT INTO user ('email', 'active', 'first_name', 'last_name','password','role') VALUES (?, ?, ?, ?, ?, ?)";
         
         boolean inserted = false;
+        
+        if(user.isActive()){
+            act = 1;
+        }
         
         try {
             ps = con.prepareStatement(sql);
             ps.setString(1, user.getEmail());
-            ps.setString(2, user.getFirstName());
-            ps.setString(3, user.getLastName());
-            ps.setString(4, user.getPassword());
-            ps.setInt(5, user.getRole().getId());
+            ps.setInt(2, act);
+            ps.setString(3, user.getFirstName());
+            ps.setString(4, user.getLastName());
+            ps.setString(5, user.getPassword());
+            ps.setInt(6, user.getRole().getId());
 //            inserted = ps.executeUpdate() != 0 ? true: false;
             inserted = ps.executeUpdate() != 0;   // same as above
         } finally {
@@ -148,19 +156,25 @@ public class UserDB {
         ConnectionPool cp = ConnectionPool.getInstance();
         Connection con = cp.getConnection();
         PreparedStatement ps = null;
-        String sql = "UPDATE user SET 'first_name' = ?, 'last_name' = ?,'password' = ?,'role' = ? WHERE 'email'=?";
+        String sql = "UPDATE user SET 'active' =?, 'first_name' = ?, 'last_name' = ?,'password' = ?,'role' = ? WHERE 'email'=?";
         
         boolean updated;
+        
+        int act = 0;
+        if(user.isActive()){
+            act = 1;
+        }
         
         try {
             ps = con.prepareStatement(sql);
             
             //No need to do any senitization or vailidation (if condition) here, this is just simple for sending it all to the database
-            ps.setString(1, user.getFirstName());
-            ps.setString(2, user.getLastName());
-            ps.setString(3, user.getPassword());
-            ps.setInt(4, user.getRole().getId());
-            ps.setString(5, user.getEmail());
+            ps.setInt(1, act);
+            ps.setString(2, user.getFirstName());
+            ps.setString(3, user.getLastName());
+            ps.setString(4, user.getPassword());
+            ps.setInt(5, user.getRole().getId());
+            ps.setString(6, user.getEmail());
             
             updated = ps.executeUpdate() != 0;
         } finally {
