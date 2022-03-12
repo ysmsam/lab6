@@ -47,23 +47,23 @@
                                 </tr>
                             </c:forEach>
                             <%--<c:if test="${user ne null}">--%>
-<!--                                <form action="user" method="post">
+                                <form action="user" method="post">
                                     <table>
                                         <tr>
                                             <td><input type="text" name="email">Email</td>
                                             <td><input type="text" name="firstName">Fisrt name</td>
                                             <td><input type="text" name="lastName">Last name</td>
                                             <td><input type="text" name="roleID">Role</td>
-                                            <td><input type="text" name="active">Active</td>-->
-                                            <!--<td>-->
-                                                <!--<a href="user" name="action" value="create">Create</a>-->
-                                                <!--<input type="hidden" name="action" value="create">-->
-                                                <!--<input type="submit" value="Add">-->
+                                            <td><input type="text" name="active">Active</td>
+                                            <td>
+                                                <a href="user" name="action" value="create">Create</a>
+                                                <input type="hidden" name="action" value="create">
+                                                <input type="submit" value="Add">
                                                 
-                                            <!--</td>-->
-                                        <!--</tr>-->
-                                    <!--</table>-->
-                                <!--</form>-->
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </form>
                             <%--</c:if>--%>
                         </tbody>
                     </table>
@@ -71,10 +71,11 @@
             <c:if test="${userEdit ne null}">
             <!--<h2>Edit Note</h2>-->
             <form action="user" method="post">
-
+                <span>${userEdit.email}</span>
                 <input type="text" name="firstName" value="${userEdit.firstName}">
                 <input type="text" name="lastName" value="${userEdit.lastName}">
                 <input type="text" name="roleID" value="${userEdit.roleID}">
+                <input type="text" name="active" value="${userEdit.active}">
 
                 <input type="hidden" name="action" value="update">
                 <input type="submit" value="Save">

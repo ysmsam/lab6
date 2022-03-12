@@ -64,8 +64,8 @@ public class UserServlet extends HttpServlet {
             try {
                 String email = request.getParameter("email").replace(" ", "+");
 
-                service.get(email);
-                request.setAttribute("userEdit", users);
+                User user = service.get(email);
+                request.setAttribute("userEdit", user);
             } catch (Exception ex) {
                 Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -88,8 +88,9 @@ public class UserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        HttpSession session = request.getSession();
-        String email = (String) session.getAttribute("email");       
+//        HttpSession session = request.getSession();
+//        String email = (String) session.getAttribute("email");   
+        String email = request.getParameter("email");
         UserService service = new UserService();
         RoleService serviceRole = new RoleService();
 
@@ -97,7 +98,8 @@ public class UserServlet extends HttpServlet {
         boolean active = request.getParameter("active") == "Y";
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
-        String password = request.getParameter("password");
+//        String password = request.getParameter("password");
+        String password = "password";
         
         String roleName= request.getParameter("roleName");
 //        int roleID = Integer.parseInt(request.getParameter("roleID"));
