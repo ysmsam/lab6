@@ -2,6 +2,7 @@ package ca.sait.lab6.servlets;
 
 import ca.sait.lab6.models.Role;
 import ca.sait.lab6.models.User;
+import ca.sait.lab6.services.RoleService;
 import ca.sait.lab6.services.UserService;
 import java.io.IOException;
 import java.util.List;
@@ -32,9 +33,11 @@ public class UserServlet extends HttpServlet {
             throws ServletException, IOException {
         
         UserService service = new UserService();
+        RoleService serviceRole = new RoleService();
         
         try {
             List<User> users = service.getAll();
+            List<Role> roles = serviceRole.getAll();
             
             request.setAttribute("users", users);
             
@@ -74,6 +77,7 @@ public class UserServlet extends HttpServlet {
         HttpSession session = request.getSession();
         String email = (String) session.getAttribute("email");       
         UserService service = new UserService();
+        RoleService serviceRole = new RoleService();
 
         String action = request.getParameter("action");
         boolean active = request.getParameter("active") == "Y";
@@ -81,7 +85,7 @@ public class UserServlet extends HttpServlet {
         String lastName = request.getParameter("lastName");
         String password = request.getParameter("password");
         
-//        String roleName= request.getParameter("roleName");
+        String roleName= request.getParameter("roleName");
         int roleID = Integer.parseInt(request.getParameter("roleID"));
         
 //        Role role = new role(roleID,roleName);

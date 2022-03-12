@@ -40,8 +40,8 @@
                                     <td name="role">${user.role}</td>
                                     <td name="active">${user.active ? "Y" : "N"}</td>
                                     <td>
-                                        <a href="users" name="action" value="update">Edit</a>
-                                        <a href="users" name="action" value="delete">Delete</a>
+                                        <a href="user" name="action" value="update">Edit</a>
+                                        <a href="user" name="action" value="delete">Delete</a>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -49,10 +49,10 @@
                                     <td><input type="text" name="email">Email</td>
                                     <td><input type="text" name="firstName">Fisrt name</td>
                                     <td><input type="text" name="lastName">Last name</td>
-                                    <td><input type="text" name="role">Role</td>
+                                    <td><input type="text" name="roleName">Role</td>
                                     <td><input type="text" name="active">Active</td>
                                     <td>
-                                        <a href="users" name="action" value="create">Create</a>
+                                        <a href="user" name="action" value="create">Create</a>
                                     </td>
                                 </tr>
                         </tbody>
@@ -60,7 +60,7 @@
                     
         <c:if test="${user ne null}">
             <h2>Edit User</h2>
-            <form action="notes" method="post">
+            <form action="user" method="post">
                 <input type="text" name="title" value="${user.firstName}"><br>
                 <input name="firstName">${user.lastName}><br>
                 <input type="text" name="role" value="${user.role}">
