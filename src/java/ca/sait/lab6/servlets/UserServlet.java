@@ -34,9 +34,9 @@ public class UserServlet extends HttpServlet {
         
         UserService service = new UserService();
         RoleService serviceRole = new RoleService();
-        
+        List<User> users = null;
         try {
-            List<User> users = service.getAll();
+            users = service.getAll();
             List<Role> roles = serviceRole.getAll();
             
             request.setAttribute("users", users);
@@ -47,15 +47,29 @@ public class UserServlet extends HttpServlet {
         }
         
         String action = request.getParameter("action");
-//        if (action != null && action.equals("view")) {
-        if (action != null) {
+        if (action != null && action.equals("delete")) {
             try {
-                String email = request.getParameter("email");
-                User user = service.get(email);
-                request.setAttribute("user", user);
+                
+                String email = request.getParameter("email").replace(" ", "+");
+//                service.delete(email);
+                request.setAttribute("users", users);
             } catch (Exception ex) {
                 Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
+            //request.setAttribute("users", users);
+        }
+        
+        action = request.getParameter("action");
+        if (action != null && action.equals("update")) {
+            try {
+                String email = request.getParameter("email").replace(" ", "+");
+
+                service.get(email);
+                request.setAttribute("userEdit", users);
+            } catch (Exception ex) {
+                Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //request.setAttribute("users", users);
         }
         
         this.getServletContext().getRequestDispatcher("/WEB-INF/users.jsp").forward(request, response);
@@ -86,11 +100,12 @@ public class UserServlet extends HttpServlet {
         String password = request.getParameter("password");
         
         String roleName= request.getParameter("roleName");
-        int roleID = Integer.parseInt(request.getParameter("roleID"));
-        
+//        int roleID = Integer.parseInt(request.getParameter("roleID"));
+        int roleID;
 //        Role role = new role(roleID,roleName);
 
         try {
+            roleID = Integer.parseInt(request.getParameter("roleID"));
             switch (action) {
                 case "create":
                     service.insert(email, active, firstName, lastName, password, roleID);

@@ -190,7 +190,8 @@ public class UserDB {
         Connection con = cp.getConnection();
         PreparedStatement ps = null;
         //String sql = "DELETE FROM user WHERE email=?";  // WHERE email = (input)
-        String sql = "UPDATE user SET active = 0 WHERE email=?";   // instead of permenantly delete a user, we can make it as a soft delete
+        //String sql = "UPDATE user SET active = 0 WHERE email=?";   // instead of permenantly delete a user, we can make it as a soft delete
+        String sql = "DELETE FROM user WHERE email=?";
         
         boolean deleted;
         
